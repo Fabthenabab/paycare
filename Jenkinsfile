@@ -27,15 +27,15 @@ pipeline {
         
         stage('Run Unit Tests') {
             steps {
-                sh '''
+                script{
+                    sh '''
                     docker run --rm \
                         -e PYTHONPATH=/app \
                         ${DOCKER_IMAGE} \
                         bash -c "pytest --junitxml=/app/unit-tests.xml"
-                '''
-            }
-            steps{
-                sh 'ls -al /app'
+                    '''
+                    sh 'ls -al /app'
+                } 
             }
             post {
                 always {
