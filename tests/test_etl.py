@@ -10,8 +10,8 @@ def test_extract_data():
     
 
 # Test for data transformation
-def test_transform_data():
-    data = sample_data()
+def test_transform_data(sample_data):
+    data = sample_data
     
     transformed_data = transform_data(data)
     assert 'tax' in transformed_data.columns
