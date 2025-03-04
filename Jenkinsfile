@@ -13,12 +13,18 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${DOCKER_IMAGE} .'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'docker run --rm ${DOCKER_IMAGE} bash -c "pip install -r requirements.txt"'
             }
         }
-
+        
         stage('Run Unit Tests') {
             steps {
                 sh '''
@@ -32,12 +38,6 @@ pipeline {
                 always {
                     junit 'unit-tests.xml'  // Publish test results
                 }
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t ${DOCKER_IMAGE} .'
             }
         }
 
