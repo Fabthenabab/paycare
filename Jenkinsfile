@@ -32,14 +32,15 @@ pipeline {
                     docker run --rm \
                         -e PYTHONPATH=/app \
                         ${DOCKER_IMAGE} \
+                        -v "/tmp:/app" \
                         bash -c "pytest --junitxml=/app/unit-tests.xml"
                     '''
-                    sh 'ls -al app'
+                    sh 'ls -al tmp'
                 } 
             }
             post {
                 always {
-                    junit '/app/unit-tests.xml'  // Publish test results
+                    junit '/tmp/unit-tests.xml'  // Publish test results
                 }
             }
         }
