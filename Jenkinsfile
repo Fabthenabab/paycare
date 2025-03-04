@@ -34,12 +34,16 @@ pipeline {
                         bash -c "pytest --junitxml=/app/unit-tests.xml"
                 '''
             }
+            steps{
+                sh 'ls -al /app'
+            }
             post {
                 always {
                     junit '/app/unit-tests.xml'  // Publish test results
                 }
             }
         }
+        
 
         stage('Run Docker Container') {
             steps {
