@@ -33,7 +33,7 @@ pipeline {
                         -v "/tmp:/test_output" \
                         -e PYTHONPATH=/app \
                         ${DOCKER_IMAGE} \
-                        bash -c "pytest --junitxml=/test_output/unit-tests.xml"
+                        bash -c \"pytest --junitxml=/test_output/unit-tests.xml\"
                     """
                     sh 'ls -la /tmp'
                 } 
