@@ -30,9 +30,9 @@ pipeline {
                 script{
                     sh '''
                     docker run --rm \
+                        -v "/tmp:/app" \
                         -e PYTHONPATH=/app \
                         ${DOCKER_IMAGE} \
-                        -v "/tmp:/app" \
                         bash -c "pytest --junitxml=/app/unit-tests.xml"
                     '''
                     sh 'ls -al tmp'
