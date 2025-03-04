@@ -35,7 +35,7 @@ pipeline {
                         ${DOCKER_IMAGE} \
                         bash -c "pytest --junitxml=/test_output/unit-tests.xml"
                     '''
-                    sh 'ls -al tmp'
+                    sh 'ls -al /tmp'
                 } 
             }
             post {
